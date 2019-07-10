@@ -1,8 +1,12 @@
 server:
   port: 8088
+  servlet:
+    context-path: /${spring.application.name}
 app:
   version: v0.0.1
 spring:
+    application:
+      name: xkcomjava
     liquibase:
       enabled: true
       change-log: classpath:db/master.xml
@@ -47,5 +51,3 @@ spring:
           persistence:
             sharedCache:
               mode: ENABLE_SELECTIVE
-    application:
-      name: Xkcomjava
