@@ -1,0 +1,51 @@
+server:
+  port: 8088
+app:
+  version: v0.0.1
+spring:
+    liquibase:
+      enabled: true
+      change-log: classpath:db/master.xml
+      default-schema: xkcomjava
+    datasource:
+      username: xiagen
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://47.96.94.40:3306/xkcomjava?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF8&useSSL=false
+      hikari:
+        auto-commit: false
+        minimum-idle: 10
+        maximum-pool-size: 50
+        connection-timeout: 10000
+        max-lifetime: 600000
+        idle-timeout: 60000
+        validation-timeout: 1000
+        leak-detection-threshold: 30000
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL5Dialect
+      database: mysql
+      open-in-view: false
+      generate-ddl: false
+      hibernate:
+        ddl-auto: none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+      properties:
+        hibernate:
+          javax:
+            cache:
+              missing_cache_strategy: create
+          cache:
+            provider_configuration_file_resource_path: ehcache.xml
+            region:
+              factory_class: org.hibernate.cache.jcache.internal.JCacheRegionFactory
+            use_second_level_cache: true
+            use_query_cache: true
+          generate_statistics: false
+        javax:
+          persistence:
+            sharedCache:
+              mode: ENABLE_SELECTIVE
+    application:
+      name: Xkcomjava
